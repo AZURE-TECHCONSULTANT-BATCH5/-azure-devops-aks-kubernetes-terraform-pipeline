@@ -14,8 +14,8 @@ stages:
         - task: PublishPipelineArtifact@1
           displayName: publish Artifacts
           inputs:
-            targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests'
-            artifact: 'terraform-manifests'
+            targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
+            artifact: 'terraform-manifests-aks'
             publishLocation: 'pipeline'
         - task: TerraformInstaller@1
           displayName: Terraform Install
@@ -26,7 +26,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
             backendServiceArm: 'terraform-aks-azurerm-svc-connection2ops'
             backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
             backendAzureRmStorageAccountName: 'emmabackendstorage'
@@ -38,4 +38,4 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'validate'
-            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
