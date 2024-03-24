@@ -28,13 +28,13 @@ terraform {
   
   # Configuration options
 
-# Terraform State Storage to Azure Storage Container
-#   backend "azurerm" {
-#     resource_group_name  = "Emma-backend-capstone-rg"
-#     storage_account_name = "emmabackendstorage"
-#     container_name       = "containerbackend"
-#     key                  = "qa.terraform.tfstate"
-#   }
+#Terraform State Storage to Azure Storage Container
+  backend "azurerm" {
+    resource_group_name  = "Emma-backend-capstone-rg"
+    storage_account_name = "emmabackendstorage"
+    container_name       = "containerbackend"
+    key                  = "qa.terraform.tfstate"
+  }
 }
 
 
