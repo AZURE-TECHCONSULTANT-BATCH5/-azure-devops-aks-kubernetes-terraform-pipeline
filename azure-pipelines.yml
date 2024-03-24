@@ -92,7 +92,7 @@ stages:
                  provider: 'azurerm'
                  command: 'plan'
                  workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-aks-out'
-                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath)-var environment=$(DEV_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                  environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-connection2ops'
                  allowTelemetryColelection: false
              - task: TerraformTaskV4@4
