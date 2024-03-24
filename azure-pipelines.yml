@@ -35,7 +35,7 @@ stages:
             provider: 'azurerm'
             command: 'init'
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
-            backendServiceArm: 'terraform-aks-azurerm-svc-connection2ops'
+            backendServiceArm: 'terraform-aks-azurerm-svc-con'
             backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
             backendAzureRmStorageAccountName: 'emmabackendstorage'
             backendAzureRmContainerName: 'containerbackend'
@@ -80,7 +80,7 @@ stages:
                  provider: 'azurerm'
                  command: 'init'
                  workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-ask-out'
-                 backendServiceArm: 'terraform-aks-azurerm-svc-connection2ops'
+                 backendServiceArm: 'terraform-aks-azurerm-svc-con'
                  backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
                  backendAzureRmStorageAccountName: 'emmabackendstorage'
                  backendAzureRmContainerName: 'containerbackend'
@@ -92,7 +92,7 @@ stages:
                  command: 'plan'
                  workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-aks-out'
                  commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-                 environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-connection2ops'
+                 environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                  allowTelemetryColelection: false
              - task: TerraformTaskV4@4
                inputs:
@@ -100,5 +100,5 @@ stages:
                 command: 'apply'
                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-aks-out'
                 commandOptions: '$(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-                environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-connection2ops'
+                environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                 allowTelemetryCollection: false
