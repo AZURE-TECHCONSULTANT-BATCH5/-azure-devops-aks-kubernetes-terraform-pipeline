@@ -39,15 +39,14 @@ stages:
             backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
             backendAzureRmStorageAccountName: 'emmabackendstorage'
             backendAzureRmContainerName: 'containerbackend'
-            backendAzureRmKey: 'qa-base-tfstatefile'
-            allowTelementoryCollection: false
+            backendAzureRmKey: 'aks-base.tfstate'
         - task: TerraformTaskV4@4
           displayName: TerraformVaildate
           inputs:
             provider: 'azurerm'
             command: 'validate'
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
-            allowTelementryCollection: false
+           
 
 
 ## Stage-2: Deploy Stages for Dev & QA
