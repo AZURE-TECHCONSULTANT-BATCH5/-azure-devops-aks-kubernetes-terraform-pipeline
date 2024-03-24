@@ -37,8 +37,8 @@ stages:
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks'
             backendServiceArm: 'terraform-aks-azurerm-svc-con'
             backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
-            backendAzureRmStorageAccountName: 'emmabackendstorage20'
-            backendAzureRmContainerName: 'emma-capbackend'
+            backendAzureRmStorageAccountName: 'terraformbackend0329'
+            backendAzureRmContainerName: 'storageblobdatacontributor'
             backendAzureRmKey: 'aks-base.tfstate'
         - task: TerraformTaskV4@4
           displayName: TerraformVaildate
@@ -91,8 +91,8 @@ stages:
                  environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                  backendServiceArm: 'terraform-aks-azurerm-svc-con'
                  backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
-                 backendAzureRmStorageAccountName: 'emmabackendstorage20'
-                 backendAzureRmContainerName: 'emma-capbackend'
+                 backendAzureRmStorageAccountName: 'terraformbackend0329'
+                 backendAzureRmContainerName: 'storageblobdatacontributor'
                  backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
              - task: TerraformTaskV4@4
                displayName: 
