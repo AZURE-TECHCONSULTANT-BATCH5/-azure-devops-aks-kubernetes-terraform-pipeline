@@ -82,32 +82,30 @@ stages:
                inputs:
                  secureFile: 'aks-terraform-devops-ssh-key-ububtu.pub'
              - task: TerraformTaskV4@4
-               displayName: terraform Init
-               inputs: 
-                 provider: 'azurerm'
-                 command: 'init'
-                 workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-ask-out'
-                 backendType: 'azurerm' 
-                 environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
-                 backendServiceArm: 'terraform-aks-azurerm-svc-con'
-                 backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
-                 backendAzureRmStorageAccountName: 'terraformbackend0329'
-                 backendAzureRmContainerName: 'storageblobdatacontributor'
-                 backendAzureRmKey: 'aks-base.tfstate'
-             - task: TerraformTaskV4@4
-               displayName: 
+               displayName: Terraform Init
                inputs:
-                 provider: 'azurerm'
-                 command: 'plan'
-                 workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out'
-                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(System.DefaultWorkingDirectory)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-                 environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
-                 allowTelemetryColelection: false
+                provider: 'azurerm'
+                command: 'init'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-ask-out'
+                backendServiceArm: 'terraform-aks-azurerm(68f1889e-6fa1-40e8-b7b8-1385bf061947)'
+                backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
+                backendAzureRmStorageAccountName: 'terraformbackend0329'
+                backendAzureRmContainerName: 'storageblobdatacontributor'
+                backendAzureRmKey: 'aks-(DEV_ENVIRONMENT).tfstate'
              - task: TerraformTaskV4@4
+               displayName: Terraform Tlan
+               inputs:
+                provider: 'azurerm'
+                command: 'plan'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out'
+                commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(System.DefaultWorkingDirectory)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                environmentServiceNameAzureRM: 'terraform-aks-azurerm(1)(68f1889e-6fa1-40e8-b7b8-1385bf061947)'
+             - task: TerraformTaskV4@4
+               displayName: Terraform Apply
                inputs:
                 provider: 'azurerm'
                 command: 'apply'
                 workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out'
                 commandOptions: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-                environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
+                environmentServiceNameAzureRM: 'terraform-aks-azurerm(2)(68f1889e-6fa1-40e8-b7b8-1385bf061947)'
                 allowTelemetryCollection: false
