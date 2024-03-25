@@ -86,7 +86,7 @@ stages:
                inputs: 
                  provider: 'azurerm'
                  command: 'init'
-                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-ask-out'
+                 workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-ask-out'
                  backendType: 'azurerm' 
                  environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                  backendServiceArm: 'terraform-aks-azurerm-svc-con'
@@ -99,15 +99,15 @@ stages:
                inputs:
                  provider: 'azurerm'
                  command: 'plan'
-                 workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-aks-out'
-                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                 workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out'
+                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(System.DefaultWorkingDirectory)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                  environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                  allowTelemetryColelection: false
              - task: TerraformTaskV4@4
                inputs:
                 provider: 'azurerm'
                 command: 'apply'
-                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-aks-out'
-                commandOptions: '$(Pipeline.Workspace)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out'
+                commandOptions: '$(System.DefaultWorkingDirectory)/terraform-manifests-aks-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                 environmentServiceNameAzureRM: 'terraform-aks-azurerm-svc-con'
                 allowTelemetryCollection: false
