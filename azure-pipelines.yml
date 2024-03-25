@@ -93,7 +93,7 @@ stages:
                  backendAzureRmResourceGroupName: 'Emma-backend-capstone-rg'
                  backendAzureRmStorageAccountName: 'terraformbackend0329'
                  backendAzureRmContainerName: 'storageblobdatacontributor'
-                 backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
+                 backendAzureRmKey: 'aks-base.tfstate'
              - task: TerraformTaskV4@4
                displayName: 
                inputs:
